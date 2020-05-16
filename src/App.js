@@ -1,5 +1,5 @@
 import React from "react";
-
+import ReactGA from "react-ga";
 import { Cards, CountryPicker, Chart } from "./components";
 import { fetchData } from "./api/";
 import styles from "./App.module.css";
@@ -14,6 +14,9 @@ class App extends React.Component {
 
   async componentDidMount() {
     const data = await fetchData();
+    ReactGA.initialize("UA-166847856-1");
+
+    ReactGA.pageview(window.location.pathname);
 
     this.setState({ data });
   }
